@@ -25,21 +25,26 @@
 
 ### Request
 ```shell
-curl --location 'localhost:9090/v1/calculator/calculate' \
---header 'Content-Type: application/json' \
---data '{
-        "op": "ADD",
-        "num1": 1,
-        "num2": 2
-    }'
+curl --request POST \
+  --url http://localhost:8081/v1/calculator/calculate \
+  --header 'Content-Type: application/json' \
+  --header 'id: 123' \
+  --data '{
+  "payload": {
+    "op": "ADD",
+    "num1": 10,
+    "num2": 5
+  }
+}'
 ```
 ### Response
 
 ```json
 {
-  "code": "200",
-  "message": "Calculation successful",
-  "data": 3
+	"statusCode": "200",
+	"message": "Operation successful",
+	"data": 15,
+	"success": true
 }
 ```
 
