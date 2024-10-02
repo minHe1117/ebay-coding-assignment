@@ -18,32 +18,41 @@
 ## API Endpoints
 ### Single Operation
 **URL:** /v1/calculator/calculate
+
 **Method:** POST
+
 **Description:** Performs a single arithmetic operation
 
 ### Request
 ```shell
-curl --location 'localhost:9090/v1/calculator/calculate' \
---header 'Content-Type: application/json' \
---data '{
-        "op": "ADD",
-        "num1": 1,
-        "num2": 2
-    }'
+curl --request POST \
+  --url http://localhost:8081/v1/calculator/calculate \
+  --header 'Content-Type: application/json' \
+  --header 'id: 123' \
+  --data '{
+  "payload": {
+    "op": "ADD",
+    "num1": 10,
+    "num2": 5
+  }
+}'
 ```
 ### Response
 
 ```json
 {
-  "code": "200",
-  "message": "Calculation successful",
-  "data": 3
+	"statusCode": "200",
+	"message": "Operation successful",
+	"data": 15,
+	"success": true
 }
 ```
 
 ### Chained Operations
 **URL:** /v1/calculator/chain
+
 **Method:** POST
+
 **Description:** Performs a sequence of arithmetic operations on an initial value.
 
 ### Request
@@ -82,7 +91,6 @@ curl --location --request POST 'http://localhost:8080/v1/calculator/chain' \
 ```
 ## Error Handling Sample
 
-
 ```shell
 curl --request POST \
   --url http://localhost:8081/v1/calculator/calculate \
@@ -108,10 +116,10 @@ curl --request POST \
 ```
 
 ## Future Improvements
-- Support for more Operators and Numeric Types. Expand the calculator to handle more operations (like mod, square root) and support more numeric types .
+- Support for more Operators and Numeric Types. Expand the calculator to handle more operations (like mod, square root) and support more numeric types.
 - Add more validation like headers, etc,.
 - Implement metrics like api response times and request volumes.
 - Caching frequently used results for performance improvements.
-- Designs like retries and multithreading
+- Designs like retries and multithreading.
 
 
